@@ -11,13 +11,6 @@ import plotly.graph_objects as go
 
 from pymongo import MongoClient
 
-# File containing the MongoDB URI
-uri_file = 'mongo_uri.txt'
-
-# Read the MongoDB URI from the file
-with open(uri_file, 'r') as file:
-    mongo_uri = file.read().strip()
-
 mongo_uri = st.secrets["mongo_uri"]
 
 # Connect to MongoDB
