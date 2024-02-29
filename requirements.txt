@@ -1,0 +1,7 @@
+numpy==1.26.4
+pandas==2.2.0
+yfinance==0.2.36
+tqdm==4.66.1
+streamlit
+plotly
+pymongo
