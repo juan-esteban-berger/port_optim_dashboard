@@ -6,4 +6,5 @@ streamlit
 plotly
 pymongo
 polars
+scipy
 yfinance
