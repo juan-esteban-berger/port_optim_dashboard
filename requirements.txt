@@ -5,3 +5,5 @@ tqdm==4.66.1
 streamlit
 plotly
 pymongo
+polars
+yfinance
