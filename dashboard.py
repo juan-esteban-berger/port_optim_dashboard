@@ -5,7 +5,6 @@ import os
 import numpy as np
 import pandas as pd
 import polars as pl
-from scipy.optimize import minimize
 
 import streamlit as st
 import plotly.express as px
