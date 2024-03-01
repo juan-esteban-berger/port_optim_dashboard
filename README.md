@@ -11,6 +11,6 @@ This project demonstrates a simple implmentation of Markowitz's Modern Portfolio
 - NVDA (NVIDIA)
 - ChargePoint Holdings (CHPT)
 
-The results of this portfolio optimization can be viewed in this interactive dashboard:
+The results of this portfolio optimization where visualized in this interactive dashboard:
 - https://hadoop-portfolio.streamlit.app/
 ![Dashboard](dashboard.png)
