@@ -24,27 +24,25 @@ st.markdown("<h1 style='text-align: center;'>Hadoop Portfolio Optimization</h1>"
 
 ###########################################################################
 # Function to get the Portfolio Data
-@st.cache_resource  # Use the correct decorator here
+@st.cache_resource
 def get_portfolio_data(_collection):
-    records = _collection.find({})  # Use the argument with an underscore
+    records = _collection.find({})
     df = pl.DataFrame(list(records))
     return df
 
 # Function to get the Weights Data
-@st.cache_resource  # Use the correct decorator here
+@st.cache_resource
 def get_weights_data(_collection):
-    records = _collection.find({})  # Use the argument with an underscore
+    records = _collection.find({})
     df = pl.DataFrame(list(records))
     return df
 
-# Function to get the Stock Returns Data
-@st.cache_resource  # Use the correct decorator here
+@st.cache_resource
 def get_stock_returns_data(_collection):
     records = _collection.find({})
     df = pl.DataFrame(list(records))
     return df
 
-# Function to get prices from Yahoo Finance
 @st.cache_resource
 def get_prices(tickers, start, end):
     data = yf.download(tickers, start=start, end=end)
@@ -77,7 +75,6 @@ df = df.drop('_id')
 
 df = df.rename({'field0': 'PortfolioID', 'field1': 'Expected Return', 'field2': 'Portfolio Risk'})
 
-# Convert to Float64
 df = df.select([
     pl.col('PortfolioID').cast(pl.Int64),
     pl.col('Expected Return').cast(pl.Float64),
@@ -92,7 +89,6 @@ df_weights = df_weights.drop('_id')
 
 df_weights = df_weights.rename({'field0': 'PortfolioID', 'field1': 'Stock', 'field2': 'Weight'})
 
-# Convert to Float64
 df_weights = df_weights.select([
     pl.col('PortfolioID').cast(pl.Int64),
     pl.col('Stock'),
@@ -106,7 +102,6 @@ df_stock_returns = df_stock_returns.drop('_id')
 
 df_stock_returns = df_stock_returns.rename({'field0': 'Date', 'field1': 'Stock', 'field2': 'Return'})
 
-# Convert to Float64
 df_stock_returns = df_stock_returns.select([
     pl.col('Date').str.strptime(pl.Date, format='%Y-%m-%d'),
     pl.col('Stock'),
@@ -123,13 +118,11 @@ stocks = df_stock_returns['Stock'].unique().to_list()
 
 # Get the Stock Prices
 prices = get_prices(stocks, earliest_date, latest_date)
-# Only Select Adjusted Close
 prices = prices['Adj Close']
 
 ###########################################################################
 # Calculate the Efficient Frontier
 lowest_risk = df['Portfolio Risk'].min()
-# Highest Risk for Porfolios above 0.7 Expected Return
 highest_risk = df.filter(pl.col('Expected Return') > 0.7)['Portfolio Risk'].max()
 
 risk_range = np.linspace(lowest_risk, highest_risk, 100)
