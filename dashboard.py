@@ -152,7 +152,7 @@ fig.update_layout(xaxis_title='Portfolio Risk',
                   yaxis_title='Expected Return',
                   showlegend=True)
 
-risk_level = st.slider("Risk Level", min_value=1.64, max_value=3.7, value=2.30, step=0.01)
+risk_level = st.slider("Risk Level", min_value=1.65, max_value=3.7, value=2.30, step=0.01)
 
 fig.add_vline(x=risk_level, line_width=3, line_color="green")
 
