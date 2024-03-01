@@ -155,14 +155,15 @@ fig.add_trace(go.Scatter(x=frontier['Portfolio Risk'], y=frontier['Expected Retu
                          mode='lines', name='Efficient Frontier',
                          line=dict(color='red', width=4)))
 
-fig.update_layout(title='Portfolio Optimization with Efficient Frontier',
-                  xaxis_title='Portfolio Risk',
+fig.update_layout(xaxis_title='Portfolio Risk',
                   yaxis_title='Expected Return',
                   showlegend=True)
 
-risk_level = st.slider("Risk Level", min_value=1.64, max_value=3.8, value=2.25, step=0.01)
+risk_level = st.slider("Risk Level", min_value=1.64, max_value=3.8, value=2.30, step=0.01)
 
 fig.add_vline(x=risk_level, line_width=3, line_color="green")
+
+fig.update_traces(hovertemplate='Risk: %{x:.2f}<br>Return: %{y:.2f}')
 
 ###########################################################################
 # Create the Treemap Plot
@@ -184,6 +185,8 @@ with col1:
 
 with col2:
     fig = px.treemap(df_filt.to_pandas(), path=['Stock'], values='Weight')
+    fig.update_traces(textinfo='label+percent entry')
+    fig.update_traces(hovertemplate='Stock: %{label}<br>Weight: %{value:.2f}')
     st.plotly_chart(fig, use_container_width=True)
 
 ###########################################################################
@@ -193,24 +196,23 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     fig = px.line(prices, x=prices.index, y=prices.columns[2], title=prices.columns[2])
     fig.update_traces(line_color='lightcoral')
+    fig.update_traces(hovertemplate='Date: %{x}<br>Price: %{y:.2f}')
     st.plotly_chart(fig, use_container_width=True)
 
 with col2:
     fig = px.line(prices, x=prices.index, y=prices.columns[0], title=prices.columns[0])
+    fig.update_traces(hovertemplate='Date: %{x}<br>Price: %{y:.2f}')
     st.plotly_chart(fig, use_container_width=True)
 
 
 with col3:
     fig = px.line(prices, x=prices.index, y=prices.columns[3], title=prices.columns[3])
     fig.update_traces(line_color='blue')
+    fig.update_traces(hovertemplate='Date: %{x}<br>Price: %{y:.2f}')
     st.plotly_chart(fig, use_container_width=True)
 
 with col4:
     fig = px.line(prices, x=prices.index, y=prices.columns[1], title=prices.columns[1])
     fig.update_traces(line_color='red')
+    fig.update_traces(hovertemplate='Date: %{x}<br>Price: %{y:.2f}')
     st.plotly_chart(fig, use_container_width=True)
-
-###########################################################################
-# Explanation
-with st.expander("Explanation", expanded=True):
-    st.write("Hello World")
