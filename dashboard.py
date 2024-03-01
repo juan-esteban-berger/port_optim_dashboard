@@ -180,6 +180,11 @@ with col2:
     fig = px.treemap(df_filt.to_pandas(), path=['Stock'], values='Weight')
     fig.update_traces(textinfo='label+percent entry')
     fig.update_traces(hovertemplate='Stock: %{label}<br>Weight: %{value:.2f}')
+    # Ensure that MSFT is colored lightcoral
+    # Ensure that AAPL is colored blue
+    # Ensure that NVDA is colored green
+    # Ensure that CHPT is colored red
+    fig.update_traces(marker=dict(colors=['blue', 'red', 'lightcoral', 'green']))
     st.plotly_chart(fig, use_container_width=True)
 
 ###########################################################################
@@ -194,13 +199,14 @@ with col1:
 
 with col2:
     fig = px.line(prices, x=prices.index, y=prices.columns[0], title=prices.columns[0])
+    fig.update_traces(line_color='blue')
     fig.update_traces(hovertemplate='Date: %{x}<br>Price: %{y:.2f}')
     st.plotly_chart(fig, use_container_width=True)
 
 
 with col3:
     fig = px.line(prices, x=prices.index, y=prices.columns[3], title=prices.columns[3])
-    fig.update_traces(line_color='blue')
+    fig.update_traces(line_color='green')
     fig.update_traces(hovertemplate='Date: %{x}<br>Price: %{y:.2f}')
     st.plotly_chart(fig, use_container_width=True)
 
