@@ -9,7 +9,9 @@ This project demonstrates a simple implmentation of Markowitz's Modern Portfolio
 - Microsoft (MSFT)
 - Apple (AAPL)
 - NVDA (NVIDIA)
-- ChargePoint Holdings (CHPT)
+- Black Berry (BB)
+- GoPro (GPRO)
+- AT&T (T)
 
 The results of this portfolio optimization were visualized in this interactive dashboard:
 - https://hadoop-portfolio.streamlit.app/
