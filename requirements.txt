@@ -7,3 +7,5 @@ plotly
 pymongo
 polars
 yfinance
+scikit-learn
+altair
