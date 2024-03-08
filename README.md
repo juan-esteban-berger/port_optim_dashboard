@@ -1,6 +1,6 @@
 # Dashboard for Hadoop Map Reduce Portfolio Optimization Project
 
-This repository contains the code for a supplemntary dashboard for the Hadoop Map Reduce Portfolio Optimization Project.
+This repository contains the code for a supplementary dashboard for the Hadoop Map Reduce Portfolio Optimization Project.
 
 The main project repository can be accessed through the following link:
 - https://github.com/juan-esteban-berger/Hadoop_Portfolio_Optimization
